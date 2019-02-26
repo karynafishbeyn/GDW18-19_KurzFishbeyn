@@ -127,13 +127,16 @@ app.post('/item', function(req, res){
 
 //Löscht ein Produkt aus der Einkaufsliste
 app.delete('/item/:id', function(req, res){
-    const list = items.find(l.id === parseInt(req.params.id));
-    if (!list) return res.status(404).send('Produkt mit der ID nicht gefunden.');
 
-    const index = items.indexOf(list);
+    //Finden des item mit id
+    const item = items.find(i => i.id === parseInt(req.params.id));
+    if (!item) return res.status(404).send('Produkt mit der ID nicht gefunden.');
+
+    //Löschen des Items
+    const index = items.indexOf(item);
     items.splice(index,1);
 
-    ressend(list);
+    res.send(items);
 });
 
 //Überprüft die User-Eingaben
