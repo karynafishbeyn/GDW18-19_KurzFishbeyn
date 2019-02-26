@@ -96,15 +96,15 @@ app.post('/item', function(req, res){
     console.log(result);
 
     if(!req.body.name || req.body.name.lenbits <3){
-        res.status(400).send("test");
+        res.status(400).send("Name is required or must be longar than 3 letters");
         return;
     }
 
-    const items = {
+    const item = {
         id: items.length + 1,
         name: req.body.name
     };
-    items.push(items);
+    items.push(item);
     res.send(items);
 });
 
