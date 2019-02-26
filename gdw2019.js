@@ -149,35 +149,39 @@ const kasse = [
 ];
 
 //Gibt Angaben Kasse aus
-app.get('/cashregister', function(req,res){
+app.get('/kassen', function(req,res){
     res.send(kasse);
 });
 
 //Erstellt eine Kasse  mit dem Namen und gibt die ID an
-app.post('/cashregister', function(req, res){
+app.post('/kassen', function(req, res){
     const { error } = validateItem(req.body);
     if(error) return res.status(400).send(result.error.details[0].message);
+
 
     const cashregister = {
         id: kasse.length + 1,
         name: req.body.name
     };
-    cashregister.push(kasse);
-    res.send(cashregister);
+    kasse.push(cashregister);
+    res.send(kasse);
 });
 
 
-//Löscht eine Kasse
-app.delete('/chashregister/:id', function(req, res){
-    const cashregister = kasse.find(l.id === parseInt(req.params.id));
-    if (!cashregister) return res.status(404).send('Kasse mit der ID nicht gefunden.');
 
-    const index = kasse.indexOf(cashregister);
+
+app.delete('/kassen/:id', function(req, res){
+
+    //Finden des Items mit der ID
+    const kassen = kasse.find(k => k.id === parseInt(req.params.id));
+    if (!kassen) return res.status(404).send('Kasse mit der ID nicht gefunden!');
+
+    //Loeschen des Items
+    const index = kasse.indexOf(kassen);
     kasse.splice(index,1);
 
-    res.send(cashregister);
-
-
+    //Senden des geloeschtenItems
+    res.send(kassen);
 });
 
 const port = process.env.PORT || 3000;
