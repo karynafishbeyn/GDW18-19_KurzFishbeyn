@@ -189,7 +189,7 @@ app.delete('/chashregister/:id', function(req, res){
     const index = kasse.indexOf(cashregister);
     kasse.splice(index,1);
 
-    ressend(cashregister);
+    res.send(cashregister);
 
 
 
