@@ -142,7 +142,6 @@ function validateItem(list){
 //Kasse
 
 
-
 const kasse = [
     { id: 1, name: 'kasse1'},
     { id: 2, name: 'kasse2'},
@@ -158,7 +157,6 @@ app.get('/cashregister', function(req,res){
 app.post('/cashregister', function(req, res){
     const { error } = validateItem(req.body);
     if(error) return res.status(400).send(result.error.details[0].message);
-
 
     const cashregister = {
         id: kasse.length + 1,
@@ -178,7 +176,6 @@ app.delete('/chashregister/:id', function(req, res){
     kasse.splice(index,1);
 
     res.send(cashregister);
-
 
 
 });
