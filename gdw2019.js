@@ -40,13 +40,13 @@ app.post('/person', function(req, res){
     // const { error } = validateItem(req.body);
     // if(error) return res.status(400).send(result.error.details[0].message);
     const schema = {
-        name: Joi.string().min(3).required()
+        name: Joi.string().min(1).required()
     };
 
     const result = Joi.validate(req.body, schema);
     console.log(result);
 
-    if(!req.body.name || req.body.name.lenbits <3){
+    if(!req.body.name || req.body.name.lenbits <1){
         res.status(400).send("Name is required or must be longar than 3 letters");
         return;
     }
