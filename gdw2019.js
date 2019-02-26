@@ -95,20 +95,10 @@ app.get('/item', function(req,res){
     res.send(items);
 });
 
-//Erstellt ein Produkt mit dem Namen und gibt die ID an
+   //Erstellt ein Produkt mit dem Namen und gibt die ID an
 app.post('/item', function(req, res){
-    // const { error } = validateItem(req.body);
-    // if(error) return res.status(400).send(result.error.details[0].message);
-    const schema = {
-        name: Joi.string().min(3).required()
-    };
-
-    const result = Joi.validate(req.body, schema);
-    console.log(result);
-
-    if(!req.body.name || req.body.name.lenbits <3){
-        res.status(400).send("Name is required or must be longar than 3 letters");
-        return;
+     const { error } = validateItem(req.body);
+    if(error) return res.status(400).send("Name is required or must be longar than 3 letters" + result.error.details[0].message);
     }
 
     const item = {
@@ -140,16 +130,14 @@ app.delete('/item/:id', function(req, res){
 });
 
 //Überprüft die User-Eingaben
-// function validateItem(list){
-//     const schema = {
-//         name: Joi.string().min(3).required()
-//     };
-//
-//     const result = Joi.validate(list, schema);
-//     console.log(result);
-//     return result;
-// }
+function validateItem(list){
+     const schema = {
+         name: Joi.string().min(1).required()
+     };
 
+   return Joi.validate(list, schema);
+
+ }
 
 //Kasse
 
