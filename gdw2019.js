@@ -37,17 +37,28 @@ app.get('/person/:id', function(req, res) {
 
 // Erstellt eine Person mit dem Namen und gibt die ID an
 app.post('/person', function(req, res){
-    const { error } = validateInput(req.body);
-    if(error) return res.status(400).send(result.error.details[0].message);
+    // const { error } = validateItem(req.body);
+    // if(error) return res.status(400).send(result.error.details[0].message);
+    const schema = {
+        name: Joi.string().min(3).required()
+    };
 
+    const result = Joi.validate(req.body, schema);
+    console.log(result);
 
-    const person = {
-        id: personen.length + 1,
+    if(!req.body.name || req.body.name.lenbits <3){
+        res.status(400).send("Name is required or must be longar than 3 letters");
+        return;
+    }
+
+    const pers = {
+        id: person.length + 1,
         name: req.body.name
     };
-    personen.push(person);
+    person.push(pers);
     res.send(person);
 });
+
 
 // Aktuallisiert die Liste mit der Person ID
 app.put('/person/:id', function(req, res){
