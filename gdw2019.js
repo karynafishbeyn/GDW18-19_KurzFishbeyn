@@ -168,8 +168,6 @@ app.post('/kassen', function(req, res){
 });
 
 
-
-
 app.delete('/kassen/:id', function(req, res){
 
     //Finden des Items mit der ID
@@ -180,7 +178,7 @@ app.delete('/kassen/:id', function(req, res){
     const index = kasse.indexOf(kassen);
     kasse.splice(index,1);
 
-    //Senden des geloeschtenItems
+    //Senden des geloeschten Items
     res.send(kassen);
 });
 
