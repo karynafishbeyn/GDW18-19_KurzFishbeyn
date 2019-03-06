@@ -134,9 +134,9 @@ function validateItem(list){
  }
 
 //Kasse
+//Kasse wurde mangels Zeit und wegen zu hoher Komplexität nicht weiter umgesetzt
 
-
-const kasse = [
+/*const kasse = [
     { id: 1, name: 'kasse1'},
     { id: 2, name: 'kasse2'},
     { id: 3, name: 'kasse3'},
@@ -175,6 +175,8 @@ app.delete('/kassen/:id', function(req, res){
     //Senden des geloeschten Items
     res.send(kassen);
 });
+*/
 
+//Server erstellen
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Programm wird gestartet ${port}!`));
