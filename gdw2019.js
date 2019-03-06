@@ -4,12 +4,6 @@ const app = express();
 
 app.use(express.json());
 
-// var myLogger = function(req, res, next){
-//   console.log('LOGGED');
-//   next();
-// };
-//
-// app.use(myLogger);
 
 const personen = [
     { id: 1, name: 'person1'},
