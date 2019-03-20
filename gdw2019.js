@@ -20,9 +20,9 @@ const items = [
 ];
 
 // Gibt die Liste aller Personen aus
- app.get('/person', function(req, res){
-     res.send(personen);
- });
+app.get('/person', function(req, res){
+    res.send(personen);
+});
 
 // Gibt die Informationen über eine bestimmte Person aus
 app.get('/person/:id', function(req, res) {
@@ -56,6 +56,7 @@ app.post('/person', function(req, res){
 });
 
 
+// evtl löschen, wenn nicht klappt
 // Aktuallisiert die Liste mit der Person ID
 app.put('/person/:id', function(req, res){
     const person = personen.find(p => p.id === parseInt(req.params.id)
@@ -91,18 +92,18 @@ app.get('/item', function(req,res){
     res.send(items);
 });
 
-   //Erstellt ein Produkt mit dem Namen und gibt die ID an
+//Erstellt ein Produkt mit dem Namen und gibt die ID an
 app.post('/item', function(req, res){
-     const { error } = validateItem(req.body);
+    const { error } = validateItem(req.body);
     if(error) return res.status(400).send("Name is required or must be longar than 3 letters" + result.error.details[0].message);
-    }
 
-    const item = {
-        id: items.length + 1,
-        name: req.body.name
-    };
-    items.push(item);
-    res.send(items);
+
+const item = {
+    id: items.length + 1,
+    name: req.body.name
+};
+items.push(item);
+res.send(items);
 });
 
 //Aktualisiert die Liste mit der Produkt ID
@@ -127,13 +128,13 @@ app.delete('/item/:id', function(req, res){
 
 //Überprüft die User-Eingaben
 function validateItem(list){
-     const schema = {
-         name: Joi.string().min(1).required()
-     };
+    const schema = {
+        name: Joi.string().min(1).required()
+    };
 
-   return Joi.validate(list, schema);
+    return Joi.validate(list, schema);
 
- }
+}
 
 //Kasse
 //Kasse wurde mangels Zeit und wegen zu hoher Komplexität nicht weiter umgesetzt
@@ -143,18 +144,14 @@ function validateItem(list){
     { id: 2, name: 'kasse2'},
     { id: 3, name: 'kasse3'},
 ];
-
 //Gibt Angaben Kasse aus
 app.get('/kassen', function(req,res){
     res.send(kasse);
 });
-
 //Erstellt eine Kasse  mit dem Namen und gibt die ID an
 app.post('/kassen', function(req, res){
     const { error } = validateItem(req.body);
     if(error) return res.status(400).send(result.error.details[0].message);
-
-
     const cashregister = {
         id: kasse.length + 1,
         name: req.body.name
@@ -162,22 +159,18 @@ app.post('/kassen', function(req, res){
     kasse.push(cashregister);
     res.send(kasse);
 });
-
-
 app.delete('/kassen/:id', function(req, res){
-
     //Finden des Items mit der ID
     const kassen = kasse.find(k => k.id === parseInt(req.params.id));
     if (!kassen) return res.status(404).send('Kasse mit der ID nicht gefunden!');
-
     //Loeschen des Items
     const index = kasse.indexOf(kassen);
     kasse.splice(index,1);
-
     //Senden des geloeschten Items
     res.send(kassen);
 });
 */
+
 
 
 app.get('/rezept', (req, res) => {
@@ -200,6 +193,8 @@ else if(response.statusCode === 200){
 }
 });
 });
+
+
 
 
 //Server erstellen
