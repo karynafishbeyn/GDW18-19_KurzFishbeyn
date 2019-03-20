@@ -41,7 +41,7 @@ app.post('/person', function(req, res){
     console.log(result);
 
     if(!req.body.name || req.body.name.lenbits <1){
-        res.status(400).send("Name is required or must be longar than 3 letters");
+        res.status(400).send("Name muss mehr als einen Buchstaben enthalten.");
         return;
     }
 
