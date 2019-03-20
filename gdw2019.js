@@ -33,8 +33,6 @@ app.get('/person/:id', function(req, res) {
 
 // Erstellt eine Person mit dem Namen und gibt die ID an
 app.post('/person', function(req, res){
-    // const { error } = validateItem(req.body);
-    // if(error) return res.status(400).send(result.error.details[0].message);
     const schema = {
         name: Joi.string().min(1).required()
     };
@@ -63,7 +61,6 @@ app.put('/person/:id', function(req, res){
 )
     if (!person) return res.status(404).send('Person mit der ID nicht gefunden.');
 
-    //const result = validateInput(req.body);
     const { error } = validateInput(req.body); //result.error
 
     if(error) return res.status(400).send(result.error.details[0].message);
