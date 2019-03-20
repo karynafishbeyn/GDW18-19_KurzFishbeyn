@@ -170,20 +170,20 @@ app.delete('/kassen/:id', function(req, res){
 
 
 app.get('/rezept', (req, res) => {
-    //QuerryString in qString speichern.
+    //QuerryString in qString speichern
     const qString = req.query;
-//Url von der ausgewaelten api builden.
+//Url von der ausgewaelten api builden
 const url = buildUrl('http://www.recipepuppy.com/api/', {
     queryParams:  qString
 })
 
-//Mithilfe von request aufrufen der url mit jenen QuerryString.
+//Mithilfe von request aufrufen der url mit jenen QuerryString
 request({url: url,json: true},(error, response, body) =>{
     //error handling
     if (error || response.statusCode === 400) {
     res.send({'errorMessage': 'Bad Request'});
 }
-//Rueckgabe der gefundenen Rezepte.
+//Rueckgabe der gefundenen Rezepte
 else if(response.statusCode === 200){
     res.send(body.results);
 }
