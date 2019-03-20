@@ -54,7 +54,6 @@ app.post('/person', function(req, res){
 });
 
 
-// evtl löschen, wenn nicht klappt
 // Aktuallisiert die Liste mit der Person ID
 app.put('/person/:id', function(req, res){
     const person = personen.find(p => p.id === parseInt(req.params.id)
