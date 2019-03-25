@@ -2,7 +2,7 @@ const Joi = require('joi');
 const express = require('express');
 const app = express();
 const request = require('request');
-const buildUrl = require('build-url');  //npm i build-url oder npm i -g build-url wenn global
+const buildUrl = require('build-url');  //URL bilden; npm i build-url oder npm i -g build-url wenn global
 
 app.use(express.json());
 
@@ -20,7 +20,7 @@ const items = [
 ];
 
 // Gibt die Liste aller Personen aus
-app.get('/person', function(req, res){
+app.get('/person', function(req, res){ //Argumente
     res.send(personen);
 });
 
@@ -33,24 +33,16 @@ app.get('/person/:id', function(req, res) {
 
 // Erstellt eine Person mit dem Namen und gibt die ID an
 app.post('/person', function(req, res){
-    const schema = {
-        name: Joi.string().min(1).required()
-    };
+    const { error } = validateItem(req.body);
+    if(error) return res.status(400).send(result.error.details[0].message);
 
-    const result = Joi.validate(req.body, schema);
-    console.log(result);
 
-    if(!req.body.name || req.body.name.lenbits <1){
-        res.status(400).send("Name muss mehr als einen Buchstaben enthalten.");
-        return;
-    }
-
-    const pers = {
-        id: person.length + 1,
+    const person = {
+        id: personen.length + 1,
         name: req.body.name
     };
-    person.push(pers);
-    res.send(person);
+    personen.push(person);
+    res.send(personen);
 });
 
 
