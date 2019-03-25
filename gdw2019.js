@@ -80,6 +80,13 @@ app.get('/item', function(req,res){
     res.send(items);
 });
 
+//Gibt Item aus Liste aus
+app.get('/item/:id', function(req, res) {
+    const item = items.find(p => p.id === parseInt(req.params.id));
+    if (!items) return res.status(404).send('Item mit der ID nicht gefunden.');
+    res.send(items);
+});
+
 //Erstellt ein Produkt mit dem Namen und gibt die ID an
 app.post('/item', function(req, res){
     const { error } = validateItem(req.body);
