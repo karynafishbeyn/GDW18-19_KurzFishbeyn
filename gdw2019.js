@@ -83,8 +83,8 @@ app.get('/item', function(req,res){
 //Gibt Item aus Liste aus
 app.get('/item/:id', function(req, res) {
     const item = items.find(p => p.id === parseInt(req.params.id));
-    if (!items) return res.status(404).send('Item mit der ID nicht gefunden.');
-    res.send(items);
+    if (!item) return res.status(404).send('Item mit der ID nicht gefunden.');
+    res.send(item);
 });
 
 //Erstellt ein Produkt mit dem Namen und gibt die ID an
