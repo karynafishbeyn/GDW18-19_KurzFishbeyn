@@ -60,7 +60,7 @@ app.put('/person/:id', function(req, res){
 )
     if (!person) return res.status(404).send('Person mit der ID nicht gefunden.');
 
-    const { error } = validateInput(req.body); //result.error
+    const { error } = validateItem(req.body); //result.error
 
     if(error) return res.status(400).send(result.error.details[0].message);
 
