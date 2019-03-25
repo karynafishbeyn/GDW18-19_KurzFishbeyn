@@ -41,7 +41,7 @@ app.post('/person', function(req, res){
         id: personen.length + 1,
         name: req.body.name
     };
-    personen.push(person);
+    personen.push(person);//Person in Array hinten anfügen
     res.send(personen);
 });
 
